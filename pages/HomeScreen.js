@@ -4,6 +4,7 @@ import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { PieChart } from 'react-native-chart-kit';
 import { Picker } from '@react-native-picker/picker';
+import { useNavigation } from '@react-navigation/native';
 
 const categoryColors = {
   Food: '#ff6384',
@@ -14,7 +15,11 @@ const categoryColors = {
   // Add more categories and colors as needed
 };
 
-const App = () => {
+const HomeScreen = () => {
+  // Navigation Hook
+//   const navigation = useNavigation();
+
+
   const [expenses, setExpenses] = useState([]);
   const [category, setCategory] = useState('');
   const [amount, setAmount] = useState('');
@@ -71,11 +76,13 @@ const App = () => {
         keyboardType="numeric"
         leftIcon={<Icon name="dollar" size={24} color="black" />}
       />
-      <Button title="Add Expense" onPress={handleAddExpense} style={styles.buttonStyles}/>
+      <Button title="Add Expense" onPress={handleAddExpense} style={styles.buttonsStyle}/>
       <br />
-      <Button title="Descrease Expense" onPress={handleDecreaseExpense} style={styles.buttonStyles}/>
+      <Button title="Decrease Expense" onPress={handleDecreaseExpense} style={styles.buttonsStyle}/>
       <br />
-      <Button title="Reset Expenses" onPress={handleResetExpenses} style={styles.buttonStyles}/>
+      <Button title="Reset Expenses" onPress={handleResetExpenses} style={styles.buttonsStyle}/>
+      <br />
+      {/* <Button title="Change Budgets" onPress={() => navigation.navigate("Budgets")} /> */}
       {chartData.length > 0 && (
         <PieChart
           data={chartData.map((item) => ({
@@ -111,9 +118,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
-  buttonStyles: {
-    width: "10rem",
+  buttonsStyle: {
+    width: "10rem"
   },
 });
 
-export default App;
+export default HomeScreen;
