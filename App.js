@@ -25,6 +25,16 @@ const App = () => {
     setAmount('');
   };
 
+  const handleDecreaseExpense = () => {
+    const index = expenses.findIndex((item) => item.category === category);
+
+    if (index !== -1) {
+      const newExpenses = [...expenses];
+      newExpenses[index].amount -= parseFloat(amount);
+      setExpenses(newExpenses);
+    }
+  }
+
   const chartData = expenses.reduce((acc, curr) => {
     const index = acc.findIndex((item) => item.name === curr.category);
     if (index === -1) {
@@ -58,6 +68,8 @@ const App = () => {
         leftIcon={<Icon name="dollar" size={24} color="black" />}
       />
       <Button title="Add Expense" onPress={handleAddExpense} />
+      <br />
+      <Button title="Descrease Expense" onPress={handleDecreaseExpense} />
       {chartData.length > 0 && (
         <PieChart
           data={chartData.map((item) => ({
