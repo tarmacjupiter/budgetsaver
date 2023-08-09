@@ -73,7 +73,7 @@ const App = () => {
       />
       <Button title="Add Expense" onPress={handleAddExpense} style={styles.buttonStyles}/>
       <br />
-      <Button title="Descrease Expense" onPress={handleDecreaseExpense} style={styles.buttonStyles}/>
+      <Button title="Decrease Expense" onPress={handleDecreaseExpense} style={styles.buttonStyles}/>
       <br />
       <Button title="Reset Expenses" onPress={handleResetExpenses} style={styles.buttonStyles}/>
       {chartData.length > 0 && (
