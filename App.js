@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { PieChart } from 'react-native-chart-kit';
@@ -76,26 +76,28 @@ const App = () => {
       <Button title="Decrease Expense" onPress={handleDecreaseExpense} style={styles.buttonStyles}/>
       <br />
       <Button title="Reset Expenses" onPress={handleResetExpenses} style={styles.buttonStyles}/>
-      {chartData.length > 0 && (
-        <PieChart
-          data={chartData.map((item) => ({
-            name: item.name,
-            population: item.amount,
-            color: categoryColors[item.name] || '#000000',
-            legendFontColor: '#7F7F7F',
-            legendFontSize: 15,
-          }))}
-          width={300}
-          height={220}
-          chartConfig={{
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          }}
-          accessor="population"
-          backgroundColor="transparent"
-          paddingLeft="15"
-          absolute
-        />
-      )}
+      <ScrollView>
+        {chartData.length > 0 && (
+          <PieChart
+            data={chartData.map((item) => ({
+              name: item.name,
+              population: item.amount,
+              color: categoryColors[item.name] || '#000000',
+              legendFontColor: '#7F7F7F',
+              legendFontSize: 15,
+            }))}
+            width={300}
+            height={220}
+            chartConfig={{
+              color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            }}
+            accessor="population"
+            backgroundColor="transparent"
+            paddingLeft="15"
+            absolute
+          />
+        )}
+      </ScrollView>
     </View>
   );
 };
